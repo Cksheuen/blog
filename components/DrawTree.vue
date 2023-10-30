@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { isNamedTupleMember } from 'typescript'
-
-const WIDTH = 1860
-const HEIGHT = 927
+const WIDTH = window.innerWidth
+const HEIGHT = window.innerHeight
 const el = $ref<HTMLCanvasElement>()
 const ctx = $computed(() => el!.getContext('2d')!)
 

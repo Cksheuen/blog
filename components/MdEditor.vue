@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 // Local Registration
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
@@ -25,3 +25,4 @@ export default {
   height: 580px;
 }
 </style>
+ -->

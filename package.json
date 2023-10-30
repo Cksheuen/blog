@@ -14,10 +14,13 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12",
     "gray-matter": "^4.0.3",
     "icones": "^1.0.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "turndown": "^7.1.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.0.0-beta.27",

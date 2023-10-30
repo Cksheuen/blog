@@ -17,21 +17,21 @@ editState.$subscribe(async (state) => {
   text.value.markdown = data?.fileContent
   text.value.html = data?.contentHtml
 })
+
+function changeHtml(value: any) {
+  if (value === '<p><br></p>')
+    return
+  ruleForm.value.content = value
+}
 </script>
 
 <template>
-  <div>
-    <h1>editor</h1>
-    <div class="main">
-      <FileIndex />
-      <div v-if="text !== { markdown: '', html: '' }" class="typing" h-100 flex overflow-hidden>
-        <div class="write" flex-1>
-          <textarea v-model="text.markdown" bg-black c-white class="textarea" />
-        </div>
-        <div class="preview" flex-1>
-          <textarea v-model="text.html" bg-black c-white class="textarea" />
-        </div>
-      </div>
+  <div flex>
+    <div class="main" w-200 style="margin: 0 auto;" flex>
+      <FileIndex w-100 />
+      <ClientOnly w-100>
+        <RichEditor @changeHtml="changeHtml" />
+      </ClientOnly>
     </div>
   </div>
 </template>
