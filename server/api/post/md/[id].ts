@@ -11,16 +11,9 @@ export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   const fullPath = path.join(postsDirectory, `${id}.md`)
   const fileContent = fs.readFileSync(fullPath, 'utf8')
-  const matterResult = matter(fileContent)
 
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
-  const contentHtml = processedContent.toString()
   return {
     id,
-    contentHtml,
     fileContent,
-    ...matterResult.data,
   }
 })

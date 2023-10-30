@@ -19,7 +19,7 @@ function clickHandler(index: number) {
 <template>
   <div class="list" inline-block>
     <ul v-if="isLoaded">
-      <li v-for="(item, index) in ids" :key="index" flex @click="clickHandler(index)">
+      <li v-for="(item, index) in ids" :key="index" flex cursor-pointer @click="clickHandler(index)">
         <div i-carbon-document text-1xl inline-block />
         <!--  <NuxtLink :to="`/posts/${item}`"> -->
         <div text-1xl inline-block>
@@ -33,3 +33,9 @@ function clickHandler(index: number) {
     </div>
   </div>
 </template>
+
+<style scoped>
+.listItem{
+  cursor:pointer
+}
+</style>

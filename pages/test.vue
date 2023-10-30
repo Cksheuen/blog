@@ -1,8 +1,10 @@
 <script setup lang="ts">
-const nuxtApp = useNuxtApp()
-console.log(nuxtApp.$hello('name'))
+const iswindows = ref(false)
+onMounted(() => {
+  iswindows.value = true
+})
 </script>
 
 <template>
-  <h1>test</h1>
+  <MdEditor v-if="iswindows" />
 </template>
