@@ -21,11 +21,9 @@ function clickHandler(index: number) {
     <ul v-if="isLoaded">
       <li v-for="(item, index) in ids" :key="index" flex cursor-pointer @click="clickHandler(index)">
         <div i-carbon-document text-1xl inline-block />
-        <!--  <NuxtLink :to="`/posts/${item}`"> -->
         <div text-1xl inline-block>
           {{ item }}
-        </div><!--
-            </NuxtLink> -->
+        </div>
       </li>
     </ul>
     <div v-else>

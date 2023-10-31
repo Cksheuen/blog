@@ -1,24 +1,24 @@
 <script setup lang="ts">
-const titles = useFetch('/api/post/postDirs').data.value
+let ids: string[] = []
+const { data, pending, error, refresh } = await useFetch('/api/post/postDirs')
 
-const ids = titles?.map((title) => {
+ids = data.value?.map((title: string) => {
   return title.replace(/\.md$/, '')
-})
+}) as string[]
 </script>
 
 <template>
   <div relative z-1>
     <h1>List of Items</h1>
-    <ul>
+    <ul v-if="!pending">
       <li v-for="(item, index) in ids" :key="index">
         <NuxtLink :to="`/posts/${item}`">
           {{ item }}
         </NuxtLink>
       </li>
     </ul>
+    <div v-else>
+      Loading...
+    </div>
   </div>
 </template>
-
-<style>
-/* Your CSS styles here */
-</style>

@@ -7,12 +7,12 @@ interface Text {
 }
 const text = ref<Text>({ markdown: '', html: '' })
 editState.$subscribe(async (state) => {
-  const data = await useFetch(`/api/post/${editState.currentEditFileName}`, {
+  const { data, pending, error, refresh } = await useFetch(`/api/post/${editState.currentEditFileName}`, {
     options: {
       method: 'GET',
       lazy: true,
     },
-  }).data.value
+  })
 
   text.value.markdown = data?.fileContent
   text.value.html = data?.contentHtml
@@ -26,7 +26,7 @@ function changeHtml(value: any) {
 </script>
 
 <template>
-  <div flex>
+  <div relative z-1>
     <div class="main" w-200 style="margin: 0 auto;" flex>
       <FileIndex w-100 />
       <ClientOnly w-100>

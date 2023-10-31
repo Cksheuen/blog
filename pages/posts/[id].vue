@@ -2,17 +2,18 @@
 const route = useRoute()
 const id = route.params.id
 
-const data = await useFetch(`/api/post/${id}`, {
-  method: 'GET',
-  body: JSON.stringify({
-    id,
-  }),
-}).data?.value
-console.log(data?.contentHtml)
+const { data, pending, error, refresh } = await useFetch(`/api/post/${id}`)
 </script>
 
 <template>
-  <div v-html="data!.contentHtml" />
+  <div v-if="pending">
+    Loading...
+  </div>
+  <div v-if="!pending" w-100 justify-center class="text" v-html="data!.contentHtml" />
 </template>
 
-<style scoped lang='less'></style>
+<style scoped>
+.text{
+  margin: 0 auto;
+}
+</style>

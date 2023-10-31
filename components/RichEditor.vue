@@ -72,7 +72,7 @@ function handleCreated(editor) {
 async function update() {
   const editor = editorRef.value
   const markdown = turndownService.turndown(editor.getHtml())
-  await useFetch('/api/post/setNew', {
+  const { data, pending, error, refresh } = await useFetch('/api/post/setNew', {
     method: 'POST',
     body: JSON.stringify({
       id: editState.currentEditFileName,
