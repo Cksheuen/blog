@@ -31,11 +31,11 @@ function init() {
   ctx.lineWidth = 0.5
   const branch: Branch = {
     start: {
-      x: WIDTH / 2,
+      x: 0,
       y: HEIGHT,
     },
     length: Math.random() * 30,
-    theta: -Math.PI / 2,
+    theta: -Math.PI / 4,
   }
   slice(branch, 1)
 }

@@ -15,6 +15,3 @@ export const useEditState = defineStore('currentEdit', () => {
     currentEditFileName,
   }
 })
-
-if (import.meta.hot)
-  import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))

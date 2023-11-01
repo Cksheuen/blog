@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
     '@vue-macros/nuxt',
+    '@nuxt/content',
   ],
 
   experimental: {
@@ -65,5 +66,7 @@ export default defineNuxtConfig({
     timeline: {
       enabled: true,
     },
+  },
+  content: {
   },
 })
