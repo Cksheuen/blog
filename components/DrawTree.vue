@@ -1,11 +1,12 @@
 <script setup lang="ts">
-const WIDTH = window.innerWidth
-const HEIGHT = window.innerHeight
+const WIDTH = 1860
+const HEIGHT = 972
 const el = $ref<HTMLCanvasElement>()
 const ctx = $computed(() => el!.getContext('2d')!)
 
 onMounted(() => {
-  init()
+  init(0, HEIGHT, -Math.PI / 4)
+  init(WIDTH, 0, Math.PI / 3 * 2)
   startFrame()
 })
 
@@ -26,21 +27,21 @@ interface Frame {
   sliceBranch: Branch
 }
 
-function init() {
+function init(x: number, y: number, theta: number) {
   ctx.strokeStyle = 'rgba(156,163,175,0.8)'
   ctx.lineWidth = 0.5
   const branch: Branch = {
     start: {
-      x: 0,
-      y: HEIGHT,
+      x,
+      y,
     },
-    length: Math.random() * 30,
-    theta: -Math.PI / 4,
+    length: Math.random() * 10,
+    theta,
   }
   slice(branch, 1)
 }
 
-const maxDepth = 50
+const maxDepth = 81
 const cen = 0.05
 
 function create(branch: Branch, depth: number) {
@@ -64,7 +65,7 @@ function create(branch: Branch, depth: number) {
 
 let pendingTasks: Frame[] = []
 
-const maxBranchNum = 15
+const maxBranchNum = 30
 
 function slice(branch: Branch, depth: number) {
   const sliceBranch: Branch = { ...branch, length: 1 }
