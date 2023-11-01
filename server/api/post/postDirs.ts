@@ -7,9 +7,11 @@ const postsDirectory = path.join(process.cwd(), 'posts')
 
 export default defineEventHandler(() => {
   const fileNames = fs.readdirSync(postsDirectory)
-  return fileNames
-  /* const allPostsData = fileNames.map((fileName) => {
+  const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace('/\.md$/', '')
+
+    const fsState = fs.statSync(path.join(postsDirectory, fileName))
+    const cdate = fsState.ctime
 
     const fullPath = path.join(postsDirectory, fileName)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
@@ -17,8 +19,10 @@ export default defineEventHandler(() => {
 
     return {
       id,
+      cdate,
       ...matterResult.data,
+
     }
   })
-  return allPostsData.sort((a, b) => a.date < b.date ? 1 : -1) */
+  return allPostsData.sort((a, b) => a.cdate < b.cdate ? 1 : -1)
 })

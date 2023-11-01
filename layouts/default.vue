@@ -6,8 +6,8 @@
       <div class="z-1 mx-auto mt-5 text-center text-sm opacity-25">
         [Default Layout]
       </div>
+      <Footer />
     </div>
-    <Footer />
     <ClientOnly>
       <DrawTree fixed left-0 top-0 />
     </ClientOnly>

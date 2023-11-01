@@ -3,6 +3,9 @@
     <NuxtLink to="/list">
       Blog
     </NuxtLink>
+    <NuxtLink to="/list">
+      Note
+    </NuxtLink>
     <NuxtLink to="/demos">
       Demos
     </NuxtLink>
