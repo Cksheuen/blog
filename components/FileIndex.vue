@@ -3,11 +3,17 @@ const editState = useEditState()
 let isLoaded = false
 const rootPath = '/api/post/postDirs'
 
-const titles = await useFetch(rootPath).data.value
+const { data, pending, error, refresh } = await useFetch(rootPath)
 
-const ids = titles?.map((title) => {
-  return title.replace(/\.md$/, '')
-}) as string[]
+const titles = data.value
+
+console.log('titles', titles)
+
+const ids = computed(() => {
+  return titles?.map((title) => {
+    return title.replace(/\.md$/, '')
+  }) as string[]
+})
 
 isLoaded = true
 
