@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { appName } from '~/constants'
 
-/* const nuxtApp = useNuxtApp()
-nuxtApp.provide('hello', name => `Hello ${name}!`)
-
-// Prints "Hello name!"
-console.log(nuxtApp.$hello('name')) */
-
 useHead({
   title: appName,
 })

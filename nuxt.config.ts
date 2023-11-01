@@ -23,9 +23,8 @@ export default defineNuxtConfig({
 
   css: [
     '@unocss/reset/tailwind.css',
-    'github-markdown-css/github-markdown.css',
-    'github-markdown-css/github-markdown-dark.css',
     'github-markdown-css/github-markdown-light.css',
+    'github-markdown-css/github-markdown-dark.css',
   ],
 
   colorMode: {
@@ -65,11 +64,5 @@ export default defineNuxtConfig({
 
   devtools: {
     enabled: true,
-
-    timeline: {
-      enabled: true,
-    },
-  },
-  content: {
   },
 })
