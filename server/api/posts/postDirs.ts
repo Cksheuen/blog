@@ -12,8 +12,8 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
   const postsDirectory
-  // = `./public/posts/${body.path}`
   = path.join(process.cwd(), 'public', 'posts', body.path)
+  // = `/posts/${body.path}`
   // = path.join(__dirname, '..', 'public', 'posts', body.path)
   // = path.join(process.cwd(), `posts/${body.path}`)
   //  = `/posts/${body.path}`
