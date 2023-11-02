@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const router = useRouter()
-console.log(useRoute().name)
 </script>
 
 <template>
