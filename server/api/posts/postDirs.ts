@@ -13,6 +13,8 @@ export default defineEventHandler(async (event) => {
 
   const postsDirectory
   = path.join(process.cwd())// , 'public', 'posts', body.path
+  console.log(fs.readdirSync(postsDirectory))
+
   // = `/posts/${body.path}`
   // = path.join(__dirname, '..', 'public', 'posts', body.path)
   // = path.join(process.cwd(), `posts/${body.path}`)
