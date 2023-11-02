@@ -11,10 +11,11 @@ const __dirname = dirname(__filename)
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
-  const postsDirectory = path.join(__dirname, '..', '..', 'posts', body.path)
+  const postsDirectory
+  // path.join(__dirname, '..', '..', 'posts', body.path)
   // path.join(process.cwd(), `posts/${body.path}`)
-  // `@/posts/${body.path}`
-  console.log(postsDirectory)
+  = `./posts/${body.path}`
+  // console.log(postsDirectory)
 
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map((fileName) => {
