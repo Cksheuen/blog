@@ -7,7 +7,7 @@ interface Text {
 }
 const text = ref<Text>({ markdown: '', html: '' })
 editState.$subscribe(async (state) => {
-  const { data, pending, error, refresh } = await useFetch(`/api/post/${editState.currentEditFileName}`, {
+  const { data, pending, error, refresh } = await useFetch(`/api/posts/${editState.currentEditFileName}`, {
     options: {
       method: 'GET',
       lazy: true,

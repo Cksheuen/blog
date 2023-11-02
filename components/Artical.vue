@@ -1,15 +1,13 @@
 <script setup lang='ts'>
-/* import 'github-markdown-css/github-markdown-dark.css'
-import 'github-markdown-css/github-markdown-light.css' */
-
-const { id } = defineProps<{ id: string }>()
+const { id, path } = defineProps<{ id: string; path: string }>()
 
 const colorMode = useColorMode()
 
-const { data, pending, error, refresh } = await useFetch('/api/post/getContent', {
+const { data, pending, error, refresh } = await useFetch(`/api/posts/getContent`, {
   method: 'POST',
   body: JSON.stringify({
     id,
+    path,
   }),
 })
 

@@ -8,8 +8,5 @@
       </div>
       <Footer />
     </div>
-    <ClientOnly>
-      <DrawTree fixed left-0 top-0 />
-    </ClientOnly>
   </main>
 </template>

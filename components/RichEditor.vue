@@ -15,7 +15,7 @@ const valueHtml = ref('<p>hello</p>') // 内容 HTML
 // 模拟 ajax 异步获取内容
 const editState = useEditState()
 editState.$subscribe(async () => {
-  const data = await useFetch(`/api/post/${editState.currentEditFileName}`, {
+  const data = await useFetch(`/api/posts/${editState.currentEditFileName}`, {
     options: {
       method: 'GET',
       lazy: true,
@@ -72,7 +72,7 @@ function handleCreated(editor) {
 async function update() {
   const editor = editorRef.value
   const markdown = turndownService.turndown(editor.getHtml())
-  const { data, pending, error, refresh } = await useFetch('/api/post/setNew', {
+  const { data, pending, error, refresh } = await useFetch('/api/posts/setNew', {
     method: 'POST',
     body: JSON.stringify({
       id: editState.currentEditFileName,

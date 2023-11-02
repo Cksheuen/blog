@@ -1,44 +1,44 @@
 <script setup lang="ts">
-const ids: string[] = []
-const years: string[] = []
-const dates: string[] = []
-const icons: boolean[] = []
-const { data, pending, error, refresh } = await useFetch('/api/post/postDirs')
+const { path } = defineProps<{ path: string }>()
 
-/* for (let index = 0; index < data.value!.length; index++) {
-  ids[index] = element.id.replace(/\.md$/, '')
-  years[index] = element.cdate[0] + element.cdate[1] + element.cdate[2] + element.cdate[3]
-  dates[index] = element.cdate
-  if (years[index] !== years[index - 1])
-    icons[index] = true
-  else icons[index] = false
-} */
-// console.log(data.value)
+const icons = ref<boolean[]>([])
 
-data.value!.forEach((element, index) => {
-  ids[index] = element.id.replace(/\.md$/, '')
-  years[index] = element.cdate[0] + element.cdate[1] + element.cdate[2] + element.cdate[3]
-  dates[index] = element.cdate
-  if (years[index] !== years[index - 1])
-    icons[index] = true
-  else icons[index] = false
+const { data, pending, error, refresh } = await useFetch('/api/posts/postDirs', {
+  method: 'POST',
+  body: JSON.stringify({
+    path,
+  }),
 })
 
-// console.log(dates)
+const years = computed<string[]>(() => {
+  const years: string[] = []
+  data?.value!.forEach((element, index) => {
+    years[index] = element.cdate[0] + element.cdate[1] + element.cdate[2] + element.cdate[3]
+    if (years[index] !== years[index - 1])
+      icons.value[index] = true
+    else icons.value[index] = false
+  })
+  return years
+})
 </script>
 
 <template>
   <div relative z-1>
     <ul v-if="!pending" class="list">
-      <template v-for="(item, index) in ids" :key="index">
+      <template v-for="(item, index) in data" :key="index">
         <div v-if="icons[index]" relaive pointer-events-none z-5 h-20 flex justify-left c-gray>
           <span
             absolute text-8em font-bold color-transparent text-stroke-2 text-stroke-hex-aaa op10
           >{{ years[index] }}</span>
         </div>
-        <div mb-5 flex justify-left text-xl opacity-25 transition-duration-100 hover-opacity-100>
-          <NuxtLink :to="`/posts/${item}`">
-            {{ item }}
+        <div mb-5 flex justify-left text-xl opacity-50 transition-duration-100 hover-opacity-100>
+          <NuxtLink :to="`/posts/${path}/${item.id.replace(/\.md$/, '')}`">
+            {{ item.id.replace(/\.md$/, '') }}
+            <span text-sm opacity-25> {{ new Date(item.cdate).toLocaleDateString('en', {
+              month: 'long',
+              day: 'numeric',
+            })
+            }}</span>
           </NuxtLink>
         </div>
       </template>

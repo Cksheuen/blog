@@ -3,9 +3,10 @@ import process from 'node:process'
 import fs from 'node:fs'
 import matter from 'gray-matter'
 
-const postsDirectory = path.join(process.cwd(), 'posts')
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event)
 
-export default defineEventHandler(() => {
+  const postsDirectory = path.join(process.cwd(), `posts/${body.path}`)
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace('/\.md$/', '')

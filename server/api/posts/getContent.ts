@@ -5,11 +5,10 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 
-const postsDirectory = path.join(process.cwd(), 'posts')
-
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
+  const postsDirectory = path.join(process.cwd(), `posts/${body.path}`)
   const fullPath = path.join(postsDirectory, `${body.id}.md`)
   const fileContent = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContent)

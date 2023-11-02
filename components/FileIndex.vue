@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 const editState = useEditState()
 let isLoaded = false
-const rootPath = '/api/post/postDirs'
+const rootPath = '/api/posts/postDirs'
 
 const { data, pending, error, refresh } = await useFetch(rootPath)
 

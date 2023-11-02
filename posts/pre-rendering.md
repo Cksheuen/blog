@@ -1,2 +1,0 @@
-nuxt
-server side render

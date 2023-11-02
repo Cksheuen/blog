@@ -23,8 +23,10 @@ export default defineNuxtConfig({
 
   css: [
     '@unocss/reset/tailwind.css',
-    'github-markdown-css/github-markdown-light.css',
-    'github-markdown-css/github-markdown-dark.css',
+    '@/styles/github-markdown.css',
+    '@/styles/github-markdown-light.css',
+    '@/styles/github-markdown-dark.css',
+
   ],
 
   colorMode: {

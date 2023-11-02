@@ -1,12 +1,12 @@
 <template>
   <div text=" gray4" flex="~ gap3" fixed right-10 top-0 z-20 m-5>
-    <NuxtLink to="/list">
+    <NuxtLink to="/blogList">
       Blog
     </NuxtLink>
-    <NuxtLink to="/list">
+    <NuxtLink to="/noteList">
       Note
     </NuxtLink>
-    <NuxtLink to="/demos">
+    <NuxtLink to="/demoList">
       Demos
     </NuxtLink>
     <NuxtLink i-carbon-campsite to="/" />

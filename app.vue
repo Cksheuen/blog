@@ -11,6 +11,9 @@ useHead({
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <ClientOnly>
+    <DrawTree fixed left-0 top-0 />
+  </ClientOnly>
 </template>
 
 <style>
