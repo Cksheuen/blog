@@ -20,11 +20,28 @@ const years = computed<string[]>(() => {
   })
   return years
 })
+/*
+const { postDirs } = useServerFunctions()
+const data = await postDirs(path)
+
+console.log(data)
+
+const years = computed<string[]>(() => {
+  const years: string[] = []
+  data!.forEach((element, index) => {
+    years[index] = element.cdate.getFullYear().toString()
+    if (years[index] !== years[index - 1])
+      icons.value[index] = true
+    else icons.value[index] = false
+  })
+  return years
+}) */
 </script>
 
 <template>
   <div relative z-1>
-    <ul v-if="!pending" class="list">
+    <ul class="list">
+      <!-- v-if="!pending" -->
       <template v-for="(item, index) in data" :key="index">
         <div v-if="icons[index]" relaive pointer-events-none z-5 h-20 flex justify-left c-gray>
           <span
@@ -43,9 +60,9 @@ const years = computed<string[]>(() => {
         </div>
       </template>
     </ul>
-    <div v-else>
+    <!-- <div v-else>
       Loading...
-    </div>
+    </div> -->
   </div>
 </template>
 
