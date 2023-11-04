@@ -9,7 +9,7 @@ const { data, pending, error, refresh } = await useFetch('/api/posts/postDirs', 
     path,
   }),
 })
-
+/*
 const years = computed<string[]>(() => {
   const years: string[] = []
   data?.value!.forEach((element, index) => {
@@ -19,7 +19,7 @@ const years = computed<string[]>(() => {
     else icons.value[index] = false
   })
   return years
-})
+}) */
 /*
 const { postDirs } = useServerFunctions()
 const data = await postDirs(path)
@@ -43,19 +43,19 @@ const years = computed<string[]>(() => {
     <ul class="list">
       <!-- v-if="!pending" -->
       <template v-for="(item, index) in data" :key="index">
-        <div v-if="icons[index]" relaive pointer-events-none z-5 h-20 flex justify-left c-gray>
+        <!-- <div v-if="icons[index]" relaive pointer-events-none z-5 h-20 flex justify-left c-gray>
           <span
             absolute text-8em font-bold color-transparent text-stroke-2 text-stroke-hex-aaa op10
           >{{ years[index] }}</span>
-        </div>
+        </div> -->
         <div mb-5 flex justify-left text-xl opacity-50 transition-duration-100 hover-opacity-100>
-          <NuxtLink :to="`/posts/${path}/${item.id.replace(/\.md$/, '')}`">
-            {{ item.id.replace(/\.md$/, '') }}
-            <span text-sm opacity-25> {{ new Date(item.cdate).toLocaleDateString('en', {
+          <NuxtLink :to="`/posts/${path}/${item!.id.replace(/\.md$/, '')}`">
+            {{ item!.id.replace(/\.md$/, '') }}
+            <!-- <span text-sm opacity-25> {{ new Date(item.cdate).toLocaleDateString('en', {
               month: 'long',
               day: 'numeric',
             })
-            }}</span>
+            }}</span> -->
           </NuxtLink>
         </div>
       </template>
