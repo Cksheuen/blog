@@ -56,6 +56,7 @@ const years = computed<string[]>(() => {
               day: 'numeric',
             })
             }}</span> -->
+            <span class="twt" text-sm opacity-25>{{ item!.id.replace(/\.md$/, '') }}</span>
           </NuxtLink>
         </div>
       </template>
@@ -66,7 +67,7 @@ const years = computed<string[]>(() => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .list {
 		box-sizing: border-box;
 		min-width: 200px;
@@ -81,4 +82,13 @@ const years = computed<string[]>(() => {
 			padding: 15px;
 		}
 	}
+  @font-face {
+font-family: 'TeyvatBlack-Regular';
+src: url('/fontStyles/TeyvatBlack-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+  .twt{
+    font-family: 'TeyvatBlack-Regular';
+  }
 </style>
