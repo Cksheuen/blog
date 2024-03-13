@@ -1,5 +1,63 @@
+import path from 'node:path'
+import axios from 'axios'
+import { defineNuxtConfig } from 'nuxt/config'
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
+
+/* const prerenderList = ['/', '/blogList', '/demoList']
+const Files = ['notes', 'blogs']
+
+const baseUrl = 'https://api.github.com/repos/cksheuen/blog_files/contents/posts'
+
+async function getFileList(url: string) {
+  const response = await axios.get(url)
+  return response.data
+}
+
+async function fetchAndProcessFiles() {
+  for (const file of Files) {
+    const postsDirectory = path.join(baseUrl, file)
+    const data = await getFileList(postsDirectory)
+
+    data!.forEach((item: any) => {
+      prerenderList.push(`posts/${file}/${item.name.replace(/\.md$/, '')}`)
+    })
+  }
+}
+
+await fetchAndProcessFiles().then(() => {
+  console.log(prerenderList)
+}) */
+
+const prerenderList = [
+  '/',
+  '/blogList',
+  '/demoList',
+  '/posts/notes/--node.js学习笔记--',
+  '/posts/notes/API',
+  '/posts/notes/API接口示例',
+  '/posts/notes/CSS学习笔记',
+  '/posts/notes/GIT&&GitHub',
+  '/posts/notes/JS——该学的逃不掉',
+  '/posts/notes/JS学习笔记',
+  '/posts/notes/Next.js（今天被折磨了么',
+  '/posts/notes/REST 和 AJAX (包含 Fetch 和 Axios)',
+  '/posts/notes/TS-Study',
+  '/posts/notes/TypeScript',
+  '/posts/notes/VUE3',
+  '/posts/notes/first',
+  '/posts/notes/hello-world',
+  '/posts/notes/nuxt.js',
+  '/posts/notes/title- VUE学习笔记',
+  '/posts/notes/字节',
+  '/posts/notes/硬件管理系统需求文档',
+  '/posts/notes/第一次例会',
+  '/posts/notes/第二次例会',
+  '/posts/notes/跨路由组件动画',
+  '/posts/notes/通过扫雷初识软件开发',
+  '/posts/notes/随便记',
+  '/posts/blogs/关于搭建这个blog这档事',
+]
 
 export default defineNuxtConfig({
   modules: [
@@ -26,7 +84,6 @@ export default defineNuxtConfig({
     '@/styles/github-markdown.css',
     '@/styles/github-markdown-light.css',
     '@/styles/github-markdown-dark.css',
-
   ],
 
   colorMode: {
@@ -40,8 +97,14 @@ export default defineNuxtConfig({
       },
     },
     prerender: {
+      autoSubfolderIndex: true,
+      concurrency: 1,
+      interval: 0,
+      failOnError: false,
       crawlLinks: false,
-      routes: ['/', 'blogList', 'demoList'],
+      retries: 3,
+      retryDelay: 500,
+      routes: [...prerenderList],
       ignore: ['/hi'],
     },
   },

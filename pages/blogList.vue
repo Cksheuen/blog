@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ClientOnly fallback-tag="span" fallback="Loading comments...">
-      <List path="blogs" />
-    </ClientOnly>
+    <!-- <ClientOnly fallback-tag="span" fallback="Loading comments..."> -->
+    <List path="blogs" />
+    <!-- </ClientOnly> -->
   </div>
 </template>
