@@ -14,11 +14,8 @@ const glslAnimation = useGlslAnimationStore()
     <NuxtPage />
   </NuxtLayout>
   <ClientOnly>
-    <!-- <DrawTree fixed left-0 top-0 /> -->
-
     <MainBg />
-    <ThemeClock v-show="glslAnimation.animation_clock" />
-    <!-- <component :is="glslComponent" /> -->
+    <ThemeClock v-show="glslAnimation.animation_clock || glslAnimation.clock_show_state" />
   </ClientOnly>
 </template>
 

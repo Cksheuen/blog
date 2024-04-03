@@ -48,33 +48,18 @@ function createPlane() {
 
 function render() {
   shaderMaterial.uniforms.u_time.value = clock.getElapsedTime()
+
   shaderMaterial.uniforms.u_day_time.value = glslAnimation.day_time
-
-  /* time.value = shaderMaterial.uniforms.u_time.value % 24.0
-
-  if (!control_time && !time_fly) { glslAnimation.day_time.value += clock.getDelta() / 60 }
-  else if (time_fly) {
-    if (start_time + shaderMaterial.uniforms.u_fly_time.value < end_time) {
-      if (!fly_clock)
-        fly_clock = new THREE.Clock()
-      shaderMaterial.uniforms.u_fly_time.value = fly_clock.getElapsedTime() * 2
-    }
-    else {
-      shaderMaterial.uniforms.u_glslAnimation.day_time.value = glslAnimation.day_time.value
-      shaderMaterial.uniforms.u_fly_time.value = 0
-      time_fly = false
-      fly_clock = null
-    }
-  } */
-  if (!glslAnimation.control_time && !glslAnimation.time_fly)
-    shaderMaterial.uniforms.u_day_time.value = glslAnimation.day_time
 
   if (glslAnimation.time_fly)
     shaderMaterial.uniforms.u_fly_time.value = glslAnimation.flown_time
 
-  if (glslAnimation.first_stop) {
+  if (glslAnimation.first_stop > 0) {
     shaderMaterial.uniforms.u_day_time.value = glslAnimation.day_time
     shaderMaterial.uniforms.u_fly_time.value = 0
+    shaderMaterial.uniforms.u_control_time.value = 0
+
+    glslAnimation.check_stop()
   }
 
   renderer.setRenderTarget(renderTargets[1]) // 双缓冲

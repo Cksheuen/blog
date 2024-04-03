@@ -1,5 +1,16 @@
+<script setup lang="ts">
+const glslAnimation = useGlslAnimationStore()
+
+function openClock() {
+  glslAnimation.setClockState(!glslAnimation.clock_show_state)
+}
+</script>
+
 <template>
   <div text=" gray4" flex="~ gap3" fixed right-10 top-0 z-20 m-5>
+    <span cursor-pointer @click="openClock">
+      Theme Clock
+    </span>
     <NuxtLink to="/blogList">
       Blog
     </NuxtLink>

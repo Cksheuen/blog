@@ -320,7 +320,7 @@ void main() {
     return;
   }
   vec3 color;
-  float day_time = u_day_time + u_fly_time;
+  float day_time = mod(u_day_time + u_fly_time, 24.);
   float control_day_time = u_control_time;
   if (u_control_time == 0.)
     control_day_time = u_day_time;
@@ -370,58 +370,13 @@ void main() {
                           floor(u_resolution.x / u_block.x - st.x));
     if (st_area_num > animation_area_num) {
       int dist = st_area_num - animation_area_num;
-      /* int down_y_area_num = int(
-          floor(st.y - pow(float(dist) / (u_resolution.x / u_block.x), .5)) *
-              (u_resolution.x / u_block.x) +
-          floor(u_resolution.x / u_block.x - st.x));
-      int down_y_dist = down_y_area_num - animation_area_num;
-      int up_y_area_num =
-          int(floor(st.y +
-                    pow(1. - float(dist) / (u_resolution.x / u_block.x), .5)) *
-                  (u_resolution.x / u_block.x) +
-              floor(u_resolution.x / u_block.x - st.x));
-      int up_y_dist = up_y_area_num - st_area_num;
-      if (dist >= 10 && (down_y_dist >= 10) ||
-          dist < 10 && dist > 0 &&
-              up_y_dist < int(floor(u_resolution.x /
-                                    u_block.x))) { // ty_area_num < st_area_num
-                                                   // && dist > 0 && dist < 10
-        gl_FragColor = vec4(0.);
-        return;
-        // gl_FragColor = vec4(transparent);
-        // return;
-      } */
+
       if (dist > 0)
         transparent =
-            1. - float(smoothstep(0., 1.,
-                                  float(dist) / 2. / (u_resolution.x / u_block.x)));
+            1. - float(smoothstep(
+                     0., 1., float(dist) / 2. / (u_resolution.x / u_block.x)));
     }
 
-    /* int limitY =
-        ceil(animation_area / (u_resolution.x / u_block.x));        // 10 - 0
-    int limitX = floor(mod(animation_area, u_resolution.x / u_block.x)); // 0 -
-    10 if (st.y > limitY || st.y > limitY - 1. && st.x < u_resolution.x /
-    u_block.x - limitX) {
-
-      float new_limit_x = limitX;
-      float new_limit_y =
-          limitY + floor(new_limit_x / (u_resolution.x / u_block.x));
-      new_limit_x = mod(new_limit_x, u_resolution.x / u_block.x);
-      if (st.y > new_limit_y ||
-          st.y > new_limit_y - 1. &&
-              st.x < u_resolution.x / u_block.x - new_limit_x) {
-        gl_FragColor = vec4(0.);
-        return;
-      } else {
-        transparent =
-            ceil((new_limit_y * (u_resolution.x / u_block.x) + new_limit_x -
-                  st.y * (u_resolution.x / u_block.x) - st.x) /
-                 (u_resolution.x / u_block.x)) /
-            5.;
-        gl_FragColor = vec4(transparent);
-        return;
-      }
-    }*/
     st.x /= u_resolution.x / u_block.x;
     st.y /= u_resolution.y / u_block.y;
     float turn_r = distance(st, CLOCK_POS);
@@ -474,7 +429,6 @@ void main() {
     if (edge > .1) {
 
       color = f * color;
-      float start_theta = mod(u_day_time / 12. * PI, 2. * PI);
       if (theta > clock_minute_hand_theta && theta < clock_hour_hand_theta ||
           (theta > clock_minute_hand_theta && theta < PI * 2. ||
            theta < clock_hour_hand_theta) &&

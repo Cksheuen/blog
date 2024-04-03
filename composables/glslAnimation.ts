@@ -1,4 +1,4 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
+import { defineStore } from 'pinia'
 import * as THREE from 'three'
 
 interface Position {
@@ -136,10 +136,6 @@ u_clock_groups.push(0)
 u_clock_speed.push(1)
 
 export const useGlslAnimationStore = defineStore('glslAnimation', () => {
-  /**
-   * Current named of the user.
-   */
-
   const day_time = ref<number>(new Date().getHours())
   const clock = new THREE.Clock()
   let fly_clock: THREE.Clock | null = null
@@ -147,20 +143,16 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
   const time_fly = ref<boolean>(false)
   const control_time = ref<boolean>(false)
   const flown_time = ref<number>(0)
-  const first_stop = ref<boolean>(false)
+  const first_stop = ref<number>(0)
   let start_time = 0
   let end_time = 0
   const animation_time = ref<number>(0)
   const animation_style = ref<number>(0)
   const before_time = ref<number>(0)
   const fade_away_time = ref<number>(0)
-
-  function updateDaytime(newDaytime: number) {
-    day_time.value = newDaytime
-  }
+  const clock_show_state = ref<boolean>(false)
 
   function timeFlow() {
-    day_time.value += clock.getDelta() / 60 / 60
     if (time_fly.value) {
       if (start_time + flown_time.value < end_time) {
         if (fly_clock)
@@ -170,22 +162,25 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
       else {
         time_fly.value = false
         fly_clock = null
+        day_time.value = (day_time.value + flown_time.value) % 24
         flown_time.value = 0
-        first_stop.value = true
+        first_stop.value = 2
       }
+    }
+    else {
+      day_time.value += clock.getDelta() / 60 / 60
     }
   }
 
   function startFlyTime(new_start_time: number, new_end_time: number) {
     time_fly.value = true
-    // fly_clock = new THREE.Clock()
     flown_time.value = 0
     start_time = new_start_time
     end_time = new_end_time
   }
 
   function check_stop() {
-    first_stop.value = false
+    first_stop.value--
   }
 
   function switchControlTimeState(new_state: boolean) {
@@ -216,6 +211,10 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
     fade_away_time.value = wx * wy / 1000 / 400
   }
 
+  function setClockState(new_state: boolean) {
+    clock_show_state.value = new_state
+  }
+
   return {
     clock_center,
     clock_radius,
@@ -231,7 +230,6 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
     compares,
     day_time,
     clock,
-    updateDaytime,
     timeFlow,
     startFlyTime,
     time_fly,
@@ -248,5 +246,7 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
     endRouteAnimation,
     fade_away_time,
     setFadeAwayTime,
+    clock_show_state,
+    setClockState,
   }
 })

@@ -17,9 +17,7 @@ let end_time
 let params
 
 const glslAnimation = useGlslAnimationStore()
-const { clock_center, clock_pointer_delta_theta, clock_radius, u_clock_gears_pos, u_clock_gears_radius, u_clock_gears_tooth, u_clock_groups, u_clock_speed, u_turn, updateDaytime, timeFlow } = glslAnimation
-
-const time = ref(0)
+const { clock_center, clock_pointer_delta_theta, clock_radius, u_clock_gears_pos, u_clock_gears_radius, u_clock_gears_tooth, u_clock_groups, u_clock_speed, u_turn, timeFlow } = glslAnimation
 
 let u_resolution = new THREE.Vector2(0, 0)
 const u_block = new THREE.Vector2(50, 50)
@@ -79,17 +77,14 @@ function createPlane() {
 function render() {
   shaderMaterial.uniforms.u_time.value = clock.getElapsedTime()
 
-  time.value = shaderMaterial.uniforms.u_time.value % 24.0
   timeFlow()
-  if (!glslAnimation.control_time && !glslAnimation.time_fly)
 
-    shaderMaterial.uniforms.u_day_time.value = glslAnimation.day_time
+  shaderMaterial.uniforms.u_day_time.value = glslAnimation.day_time
 
   if (glslAnimation.time_fly)
     shaderMaterial.uniforms.u_fly_time.value = glslAnimation.flown_time
 
-  if (glslAnimation.first_stop) {
-    glslAnimation.updateDaytime(shaderMaterial.uniforms.u_control_time.value)
+  if (glslAnimation.first_stop > 0) {
     shaderMaterial.uniforms.u_day_time.value = glslAnimation.day_time
     shaderMaterial.uniforms.u_fly_time.value = 0
     shaderMaterial.uniforms.u_control_time.value = 0
@@ -186,8 +181,7 @@ onMounted(() => {
       theta = (theta + 2.5 * Math.PI) % (Math.PI * 2)
 
       start_time = glslAnimation.day_time
-      updateDaytime((theta / Math.PI * 12) % 24)
-      end_time = glslAnimation.day_time
+      end_time = (theta / Math.PI * 12) % 24
       if (start_time > end_time)
         end_time += 24
       glslAnimation.startFlyTime(start_time, end_time)
