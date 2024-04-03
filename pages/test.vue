@@ -6,5 +6,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <MdEditor v-if="iswindows" />
+  <ThemeClock />
 </template>

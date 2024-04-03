@@ -1,4 +1,5 @@
 import path from 'node:path'
+import * as fs from 'node:fs'
 import axios from 'axios'
 import { defineNuxtConfig } from 'nuxt/config'
 import { pwa } from './config/pwa'
@@ -130,4 +131,19 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  vite: {
+    plugins: [
+      {
+        name: 'load-glsl',
+        load(id) {
+          if (id.endsWith('.glsl')) {
+            const content = fs.readFileSync(id, 'utf-8')
+            return content
+          }
+        },
+      },
+    ],
+  },
+  ssr: false,
+  // plugins: ['~/plugins/glslAnimation.ts'],
 })

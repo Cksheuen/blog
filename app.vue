@@ -4,6 +4,8 @@ import { appName } from '~/constants'
 useHead({
   title: appName,
 })
+
+const glslAnimation = useGlslAnimationStore()
 </script>
 
 <template>
@@ -12,7 +14,11 @@ useHead({
     <NuxtPage />
   </NuxtLayout>
   <ClientOnly>
-    <DrawTree fixed left-0 top-0 />
+    <!-- <DrawTree fixed left-0 top-0 /> -->
+
+    <MainBg />
+    <ThemeClock v-show="glslAnimation.animation_clock" />
+    <!-- <component :is="glslComponent" /> -->
   </ClientOnly>
 </template>
 
