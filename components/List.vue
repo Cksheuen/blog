@@ -69,26 +69,28 @@ const years = computed<string[]>(() => {
 
 <style scoped>
 .list {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 650px;
-		margin: 0 auto;
-		padding: 45px;
-    background-color: transparent;
-	}
-
-	@media (max-width: 767px) {
-		.markdown-body-dark {
-			padding: 15px;
-		}
-	}
-  @font-face {
-font-family: 'TeyvatBlack-Regular';
-src: url('/fontStyles/TeyvatBlack-Regular.ttf') format('truetype');
-font-weight: normal;
-font-style: normal;
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 45px;
+  background-color: transparent;
 }
-  .twt{
-    font-family: 'TeyvatBlack-Regular';
+
+@media (max-width: 767px) {
+  .markdown-body-dark {
+    padding: 15px;
   }
+}
+
+@font-face {
+  font-family: 'TeyvatBlack-Regular';
+  src: url('/fontStyles/TeyvatBlack-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.twt {
+  font-family: 'TeyvatBlack-Regular';
+}
 </style>

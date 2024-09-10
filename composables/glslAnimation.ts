@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import * as THREE from 'three'
+import { now } from '~/components/chooseImg'
 
 interface Position {
   x: number
@@ -135,6 +136,68 @@ u_clock_gears_tooth.push(new THREE.Vector2(0.02, 0.01))
 u_clock_groups.push(0)
 u_clock_speed.push(1)
 
+// 模拟 GLSL 的 mix 函数
+function mix(x, y, a) {
+  return x.map((xi, index) => xi + (y[index] - xi) * a)
+}
+
+// 模拟 GLSL 的 pow 函数已经存在于 JavaScript 中，直接使用 Math.pow
+
+// 将颜色转换为十六进制格式
+function vec3ToHex(vec) {
+  return `#${vec.map((value) => {
+    const hex = Math.floor(value * 255).toString(16)
+    return hex.length === 1 ? `0${hex}` : hex
+  }).join('')}`
+}
+
+// 根据时间获取天空颜色
+function getSkyColor(time) {
+  const dawnColor = [0.7, 0.5, 0.4]
+  const noonColor = [0.2, 0.5, 0.9]
+  const duskColor = [0.7, 0.4, 0.2]
+  const nightColor = [0.1, 0.1, 0.2]
+
+  const t = time % 24.0 // 模拟一天24小时
+
+  if (t < 6.0) {
+    return vec3ToHex(mix(nightColor, dawnColor, (t / 6.0) ** 6))
+  }
+  else if (t < 12.0) {
+    return vec3ToHex(mix(dawnColor, noonColor, (t - 6.0) / 6.0))
+  }
+  else if (t < 18.0) {
+    return vec3ToHex(mix(noonColor, duskColor, ((t - 12.0) / 6.0) ** 6))
+  }
+  else {
+    return vec3ToHex(mix(duskColor, nightColor, ((t - 18.0) / 6.0) ** (1.0 / 8.0)))
+  }
+}
+
+function invertColor(hex) {
+  // 移除 '#'，然后将十六进制颜色值转换为数字
+  const color = Number.parseInt(hex.slice(1), 16)
+  // 使用按位非运算符 '~' 对颜色值进行取反操作
+  // 然后使用 & 0xFFFFFF 保留低24位
+  // 最后转换回十六进制格式，前面补零到6位，并加上 '#'
+  return `#${(0xFFFFFF ^ color).toString(16).padStart(6, '0')}`
+}
+
+function getContrastColor(hex) {
+  // 移除 '#'，然后将十六进制颜色值转换为数字
+  const color = Number.parseInt(hex.slice(1), 16)
+  // 提取 RGB 分量
+  const r = (color >> 16) & 0xFF
+  const g = (color >> 8) & 0xFF
+  const b = color & 0xFF
+
+  // 计算亮度
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000
+
+  // 根据亮度返回黑色或白色作为对比色
+  return brightness > 128 ? '#000000' : '#ffffff'
+}
+
 export const useGlslAnimationStore = defineStore('glslAnimation', () => {
   const day_time = ref<number>(new Date().getHours())
   const clock = new THREE.Clock()
@@ -151,24 +214,38 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
   const before_time = ref<number>(0)
   const fade_away_time = ref<number>(0)
   const clock_show_state = ref<boolean>(false)
+  const now_color = ref<string>('black')
+  const now_bg_color = ref<string>('black')
+
+  function updateColor() {
+    now_bg_color.value = getSkyColor(day_time.value)
+    now_color.value = getContrastColor(getSkyColor(day_time.value))
+  }
 
   function timeFlow() {
     if (time_fly.value) {
       if (start_time + flown_time.value < end_time) {
-        if (fly_clock)
+        if (fly_clock) {
           flown_time.value = fly_clock.getElapsedTime() * 2
-        else fly_clock = new THREE.Clock()
+          now_bg_color.value = getSkyColor((flown_time.value) % 24)
+          now_color.value = getContrastColor(getSkyColor((flown_time.value) % 24))
+        }
+        else {
+          fly_clock = new THREE.Clock()
+        }
       }
       else {
         time_fly.value = false
         fly_clock = null
         day_time.value = (day_time.value + flown_time.value) % 24
+        updateColor()
         flown_time.value = 0
         first_stop.value = 2
       }
     }
     else {
       day_time.value += clock.getDelta() / 60 / 60
+      updateColor()
     }
   }
 
@@ -248,5 +325,7 @@ export const useGlslAnimationStore = defineStore('glslAnimation', () => {
     setFadeAwayTime,
     clock_show_state,
     setClockState,
+    now_color,
+    now_bg_color,
   }
 })

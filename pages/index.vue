@@ -4,7 +4,7 @@ const online = useOnline()
 
 <template>
   <div>
-    <div class="information" m-auto>
+    <div class="information" text-clock-text-100 m-auto>
       <div m-auto mb-8 text-left prose>
         <h1 slide-enter-50 mb-0>
           Cksheuen

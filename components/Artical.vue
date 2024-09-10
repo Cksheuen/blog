@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-const { id, path } = defineProps<{ id: string; path: string }>()
+const { id, path } = defineProps<{ id: string, path: string }>()
 
 const colorMode = useColorMode()
 

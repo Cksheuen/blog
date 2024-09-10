@@ -7,8 +7,8 @@ function openClock() {
 </script>
 
 <template>
-  <div text=" gray4" flex="~ gap3" fixed right-10 top-0 z-20 m-5>
-    <span cursor-pointer @click="openClock">
+  <div text="clock-bg-500" flex="~ gap3" fixed right-10 top-0 z-20 m-5>
+    <span right-0 top-0 cursor-pointer @click="openClock">
       Theme Clock
     </span>
     <NuxtLink to="/blogList">

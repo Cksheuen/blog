@@ -17,7 +17,7 @@ let end_time
 let params
 
 const glslAnimation = useGlslAnimationStore()
-const { clock_center, clock_pointer_delta_theta, clock_radius, u_clock_gears_pos, u_clock_gears_radius, u_clock_gears_tooth, u_clock_groups, u_clock_speed, u_turn, timeFlow } = glslAnimation
+const { clock_center, clock_pointer_delta_theta, clock_radius, u_clock_gears_pos, u_clock_gears_radius, u_clock_gears_tooth, u_clock_groups, u_clock_speed, u_turn, clock_show_state, timeFlow } = glslAnimation
 
 let u_resolution = new THREE.Vector2(0, 0)
 const u_block = new THREE.Vector2(50, 50)
@@ -189,8 +189,6 @@ onMounted(() => {
     }
   })
   window.addEventListener('mousemove', (e) => {
-    // console.log(clock_show_state)
-
     if (!glslAnimation.clock_show_state)
       return
     if (cursor_over(e, window))
@@ -199,39 +197,6 @@ onMounted(() => {
       document.body.style.cursor = 'default'
     if (glslAnimation.control_time) {
       const st = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
-      let theta = Math.atan2(st.y - clock_center.y, (st.x - clock_center.x) * params)
-      theta = (theta + 2.5 * Math.PI) % (Math.PI * 2)
-
-      shaderMaterial.uniforms.u_control_time.value = (theta / Math.PI * 12) % 24
-    }
-  })
-
-  window.addEventListener('touchstart', (e) => {
-    if (cursor_over(e.touches[0], window))
-      glslAnimation.switchControlTimeState(true)
-  })
-  window.addEventListener('touchend', (e) => {
-    if (glslAnimation.control_time) {
-      const st = { x: e.changedTouches[0].clientX / window.innerWidth, y: e.changedTouches[0].clientY / window.innerHeight }
-      let theta = Math.atan2(st.y - clock_center.y, (st.x - clock_center.x) * params)
-      theta = (theta + 2.5 * Math.PI) % (Math.PI * 2)
-
-      start_time = glslAnimation.day_time
-      end_time = (theta / Math.PI * 12) % 24
-      if (start_time > end_time)
-        end_time += 24
-      glslAnimation.startFlyTime(start_time, end_time)
-      glslAnimation.switchControlTimeState(false)
-    }
-  })
-  window.addEventListener('touchmove', (e) => {
-    // e.preventDefault()
-    if (cursor_over(e, window))
-      document.body.style.cursor = 'pointer'
-    else
-      document.body.style.cursor = 'default'
-    if (glslAnimation.control_time) {
-      const st = { x: e.touches[0].clientX / window.innerWidth, y: e.touches[0].clientY / window.innerHeight }
       let theta = Math.atan2(st.y - clock_center.y, (st.x - clock_center.x) * params)
       theta = (theta + 2.5 * Math.PI) % (Math.PI * 2)
 

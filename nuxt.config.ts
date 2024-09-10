@@ -70,6 +70,15 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxt/content',
   ],
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: [
+      'markdown-it-div',
+      'markdown-it-attrs',
+    ],
+  },
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
