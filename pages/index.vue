@@ -1,40 +1,47 @@
-<script setup lang="ts">
-const online = useOnline()
+<script setup lang='ts'>
+import AuthorInf from '../components/LuofuStyle/AuthorInf.vue'
+import BlogList from '../components/LuofuStyle/BlogList.vue'
+import { list_theme } from '~/composables/listChange'
 </script>
 
 <template>
-  <div>
-    <div class="information" text-clock-text-100 m-auto>
-      <div m-auto mb-8 text-left prose>
-        <h1 slide-enter-50 mb-0>
-          Cksheuen
-        </h1>
-      </div>
-      <div class="introduction" slide-enter-50 m-auto mt-5 text-left c-gray5 prose>
-        <p>早上中午晚上好！</p>
-        <p>
-          这是某蒟蒻因为看到
-          <a href="https://blog.plumbiu.top/" rel="noopener" target="_blank">佬纯手写写的blog</a>
-
-          比hexo搭建的快好多所以自己写的一个不完善的劣质产品。后面大概会再这上面丢些奇奇怪怪的东西。
-        </p>
-        <p>
-          页面样式风格
-          <span line-through>抄袭</span>
-
-          参考自
-          <a href="https://antfu.me/" rel="noopener" target="_blank">fu神 antfu</a>。
-        </p>
-        <p>After all, it's just a silly personal blog.</p>
-        <p>If you have some advice about it, please just contact me.</p>
-      </div>
+  <div font-600 text-clock-bg-500>
+    <!-- <div mb-5 flex items-center>
+      <div class="colored" mr-2 h-10 w-10 />
+      <h1>罗浮杂俎</h1>
+    </div> -->
+    <div mx-auto flex justify-center gap-10>
+      <AuthorInf />
+      <BlogList :path="list_theme" />
     </div>
-    <Suspense>
-      <template #fallback>
-        <div italic op50>
-          <span animate-pulse>Loading...</span>
-        </div>
-      </template>
-    </Suspense>
   </div>
 </template>
+
+<style scoped>
+.colored {
+  /* transform: translateY(-60px);
+     filter: drop-shadow(var(--clock-bg-500) 0 0px); */
+  /* background-image: url('../public/imgs/Luofu.png'),
+        linear-gradient(#f00, #f00); */
+  /* background-blend-mode: lighten; */
+  /* background-size: cover; */
+  background-color: var(--clock-bg-500);
+  mask-image: url('../public/imgs/Luofu.png');
+  mask-size: cover;
+}
+
+.user-name {
+  position: relative;
+}
+
+.user-name::after {
+  content: "totally fw";
+  position: absolute;
+  bottom: -.5rem;
+  left: -2rem;
+  font-size: 12%;
+  display: block;
+  color: var(--clock-text-900);
+  font-weight: 300;
+}
+</style>

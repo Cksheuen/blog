@@ -11,65 +11,41 @@ const { data, pending, error, refresh } = await useFetch(`/api/posts/getContent`
   }),
 })
 
-const theme = computed(() => {
-  if (colorMode.preference === 'light')
-    return 'markdown-body-light'
-
-  else if (colorMode.preference === 'dark')
-    return 'markdown-body-dark'
-  return 'markdown-body-light'
+onMounted(() => {
+  document.querySelectorAll('.markdown-body h1').forEach((h1) => {
+    h1.setAttribute('data-text', h1.textContent!)
+  })
 })
 </script>
 
 <template>
-  <div v-if="pending">
-    Loading...
-  </div>
-  <div v-if="!pending" justify-center :class="theme" text-left v-html="data!.contentHtml" />
+  <div class="markdown-body" text-left v-html="data!.contentHtml" />
 </template>
 
+<style src="../styles/glass.css"></style>
+
 <style scoped>
-.markdown-body-dark {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-    background-color: transparent;
-	}
+.markdown-body {
+	box-sizing: border-box;
+	min-width: 200px;
+	max-width: 980px;
+	margin: 0 auto;
+	padding: 45px;
+	background-color: transparent;
 
-	@media (max-width: 767px) {
-		.markdown-body-dark {
-			padding: 15px;
-		}
-	}
-  .markdown-body-light {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-    background-color: transparent;
-	}
+	--color-fg-default: var(--clock-bg-100);
+	--color-canvas-default: red  ;
+	/* var(--clock-bg-900) */
+}
 
-	@media (max-width: 767px) {
-		.markdown-body-light {
-			padding: 15px;
-		}
-	}
+@font-face {
+  font-family: 'TeyvatBlack-Regular';
+  src: url('/fontStyles/TeyvatBlack-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-	.markdown-body {
-		box-sizing: border-box;
-		min-width: 200px;
-		max-width: 980px;
-		margin: 0 auto;
-		padding: 45px;
-    background-color: transparent;
-	}
-
-	@media (max-width: 767px) {
-		.markdown-body-light {
-			padding: 15px;
-		}
-	}
+.twt {
+  font-family: 'TeyvatBlack-Regular';
+}
 </style>

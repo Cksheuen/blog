@@ -1,5 +1,5 @@
 <template>
-  <main class="px-10 py-20 text-center">
+  <main box-border px-10 pt-20 text-center>
     <div relative>
       <Header />
       <slot />

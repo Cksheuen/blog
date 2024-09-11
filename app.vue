@@ -119,6 +119,10 @@ body,
   width: 100vw;
   margin: 0;
   padding: 0;
+  overflow: hidden auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--clock-bg-900) var(--clock-bg-100);
 }
 
 :root {

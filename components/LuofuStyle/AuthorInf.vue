@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { changeListTheme, list_theme } from '~/composables/listChange'
+
 const lists = ['Blogs', 'Notes', 'Demos']
 const list_icons = ['i-carbon-blog', 'i-carbon-notebook-reference', 'i-carbon-demo']
-const chosen = ref(0)
 </script>
 
 <template>
@@ -29,11 +30,11 @@ const chosen = ref(0)
     <div class="list">
       <div
         v-for="(list, i) in lists" :key="list"
-        :class="`list glass ${i === chosen ? 'list-active' : 'list-unactive'}`"
+        :class="`list glass ${list.toLowerCase() === list_theme ? 'list-active' : 'list-unactive'}`"
         relative my-5 w-70 flex cursor-pointer items-center
-        justify-left b-1 b-solid px-4 py-1 transition-all duration-300 ease-in-out @click="chosen = i"
+        justify-left b-1 b-solid px-4 py-1 transition-all duration-300 ease-in-out @click="changeListTheme(list.toLowerCase())"
       >
-        <div v-if="i === chosen" class="bg-font lightSpeedInLeft" absolute bottom-1 right-1 text-5 text-clock-bg-400>
+        <div v-if="list.toLowerCase() === list_theme" class="bg-font lightSpeedInLeft" absolute bottom-1 right-1 text-5 text-clock-bg-400>
           {{ list }}
         </div>
         <span :class="list_icons[i]" mr-3 inline-block h-8 w-8 />

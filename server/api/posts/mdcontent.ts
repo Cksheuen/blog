@@ -12,7 +12,6 @@ const __dirname = dirname(__filename)
 
 export default defineEventHandler(async () => {
   const file_path = path.join(__dirname, '../', '../', 'public', '看人工智能论文.md')
-  console.log(file_path)
 
   const md_content = fs.readFileSync(file_path, 'utf-8')
   const { content, data } = matter(md_content)
