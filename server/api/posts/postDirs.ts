@@ -41,5 +41,5 @@ export default defineEventHandler(async (event) => {
 
     }
   })
-  return allPostsData/* .sort((a, b) => a.cdate < b.cdate ? 1 : -1) */
+  return allPostsData.sort((a, b) => a.cdate < b.cdate ? 1 : -1)
 })

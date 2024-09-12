@@ -230,7 +230,20 @@
   border-style: none;
   max-width: 100%;
   box-sizing: content-box;
-  background-color: var(--color-canvas-default);
+  background:  var(--clock-bg-800);
+  padding: 1em;
+  mask: 
+  linear-gradient(to right, 
+    transparent 0, 
+    var(--clock-bg-800) 5%, 
+    var(--clock-bg-800) 95%, 
+    transparent 100%),
+  linear-gradient(to bottom, 
+    transparent 0, 
+    var(--clock-bg-800) 5%, 
+    var(--clock-bg-800) 95%, 
+    transparent 100%);
+    mask-composite: intersect;
 }
 
 .markdown-body code,
