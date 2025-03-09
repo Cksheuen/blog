@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "cd ./app/blog & pnpm dev",
-    "pw": "cd ./wasm/wasm-scene & wasm-pack build"
+    "dev": "cd app/blog && pnpm dev",
+    "pw": "cd wasm/wasm-scene && wasm-pack build"
   },
   "keywords": [],
   "author": "Cksheuen",
