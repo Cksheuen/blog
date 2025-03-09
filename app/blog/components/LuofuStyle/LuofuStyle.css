@@ -1,0 +1,19 @@
+.glass {
+    position: relative;
+    overflow: hidden;
+    background: inherit;
+    box-shadow: 0 0 10px var(--clock-bg-500);
+}
+
+.glass::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--clock-bg-900);
+    opacity: .3;
+    filter: blur(10px);
+}

@@ -2,9 +2,10 @@
   "name": "new-blog",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "cd app/blog && pnpm dev",
-    "pw": "cd wasm/wasm-scene && wasm-pack build"
+    "dev": "cd app/blog & pnpm dev",
+    "pw": "cd wasm/wasm-scene & wasm-pack build"
   },
   "keywords": [],
   "author": "Cksheuen",
