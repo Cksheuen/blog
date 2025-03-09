@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cd app/blog & pnpm dev",
-    "pw": "cd wasm/wasm-scene & wasm-pack build",
-    "build:web": "cd app/blog & pnpm build",
-    "build": "pnpm pw & pnpm build:web"
+    "build:web": "cd app/blog & pnpm build"
   },
   "keywords": [],
   "author": "Cksheuen",
