@@ -56,7 +56,7 @@ watch(() => path, async () => {
       </div>
     </div>
     <div
-      v-else-if="current_data && current_data.length && current_data[0].cdate"
+      v-else-if="current_data && current_data.length "
       class="fadeInLeft"
     >
       <div
