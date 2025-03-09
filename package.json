@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cd app/blog & pnpm dev",
-    "build:web": "cd app/blog & pnpm build"
+    "build": "cd app/blog & pnpm build"
   },
   "keywords": [],
   "author": "Cksheuen",

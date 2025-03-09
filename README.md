@@ -8,5 +8,5 @@ Compile and develop as the script in package.json written.
 
 ```
 "pw": "cd wasm/wasm-scene & wasm-pack build",
-"build": "pnpm pw & pnpm build:web"
+"build:all": "pnpm pw & pnpm build:web"
 ```
