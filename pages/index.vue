@@ -2,14 +2,16 @@
 import AuthorInf from '../components/LuofuStyle/AuthorInf.vue'
 import BlogList from '../components/LuofuStyle/BlogList.vue'
 import { list_theme } from '~/composables/listChange'
+
+const sentence = "nvim is such an interesting tool"
+onMounted(() => {
+  console.log(sentence)
+  console.log("but it still have some questions to overcome")
+})
 </script>
 
 <template>
   <div font-600 text-clock-bg-500>
-    <!-- <div mb-5 flex items-center>
-      <div class="colored" mr-2 h-10 w-10 />
-      <h1>罗浮杂俎</h1>
-    </div> -->
     <div mx-auto flex justify-center gap-10>
       <AuthorInf />
       <BlogList :path="list_theme" />

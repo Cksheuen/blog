@@ -41,6 +41,7 @@ const years = computed<string[]>(() => {
 <template>
   <div relative z-1>
     <ul class="list">
+      {{ data }}
       <!-- v-if="!pending" -->
       <template v-for="(item, index) in data" :key="index">
         <!-- <div v-if="icons[index]" relaive pointer-events-none z-5 h-20 flex justify-left c-gray>
