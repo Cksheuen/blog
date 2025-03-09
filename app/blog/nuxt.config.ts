@@ -86,8 +86,17 @@ export default defineNuxtConfig({
           }
         },
       },
-      wasm()
+      wasm(),
     ],
+    build: {
+      target: 'esnext',
+      rollupOptions: {
+        external: ['wasm_scene'],
+      },
+    },
+    optimizeDeps: {
+      exclude: ['wasm_scene'],
+    },
   },
 
   // plugins: ['~/plugins/glslAnimation.ts'],
