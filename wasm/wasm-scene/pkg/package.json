@@ -1,0 +1,16 @@
+{
+  "name": "wasm_scene",
+  "version": "0.1.0",
+  "files": [
+    "wasm_scene_bg.wasm",
+    "wasm_scene.js",
+    "wasm_scene_bg.js",
+    "wasm_scene.d.ts"
+  ],
+  "module": "wasm_scene.js",
+  "types": "wasm_scene.d.ts",
+  "sideEffects": [
+    "./wasm_scene.js",
+    "./snippets/*"
+  ]
+}
