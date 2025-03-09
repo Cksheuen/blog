@@ -1,10 +1,5 @@
-import path, { dirname } from 'node:path'
-import process from 'node:process'
-import fs from 'node:fs'
-import { fileURLToPath } from 'node:url'
-import matter from 'gray-matter'
+import path from 'node:path'
 import axios from 'axios'
-import config from './config.json'
 
 // const baseUrl = config.path
 

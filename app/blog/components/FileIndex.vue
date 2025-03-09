@@ -26,7 +26,7 @@ function clickHandler(index: number) {
   <div class="list" inline-block>
     <ul v-if="isLoaded">
       <li v-for="(item, index) in ids" :key="index" flex cursor-pointer @click="clickHandler(index)">
-        <div i-carbon-document text-1xl inline-block />
+        <div text-1xl i-carbon-document inline-block />
         <div text-1xl inline-block>
           {{ item }}
         </div>

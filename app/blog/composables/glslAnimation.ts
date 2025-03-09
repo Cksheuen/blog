@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import * as THREE from 'three'
+
 // import { now } from '../' //'./components/chooseImg'
 
 interface Position {
@@ -160,18 +161,17 @@ function getSkyColor(time) {
 
   const t = time % 24.0 // 模拟一天24小时
 
-  if (t < 6.0) {
+  if (t < 6.0)
     return vec3ToHex(mix(nightColor, dawnColor, (t / 6.0) ** 6))
-  }
-  else if (t < 12.0) {
+
+  else if (t < 12.0)
     return vec3ToHex(mix(dawnColor, noonColor, (t - 6.0) / 6.0))
-  }
-  else if (t < 18.0) {
+
+  else if (t < 18.0)
     return vec3ToHex(mix(noonColor, duskColor, ((t - 12.0) / 6.0) ** 6))
-  }
-  else {
+
+  else
     return vec3ToHex(mix(duskColor, nightColor, ((t - 18.0) / 6.0) ** (1.0 / 8.0)))
-  }
 }
 
 function invertColor(hex) {

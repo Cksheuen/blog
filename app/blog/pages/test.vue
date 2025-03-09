@@ -7,11 +7,10 @@ import * as wasm from 'wasm_scene'
   })
 }) */
 onMounted(() => {
-  const bg = wasm.Painter.new(1.)
+  const bg = wasm.Painter.new(1.0)
   setTimeout(() => {
-    bg.update(2.)
+    bg.update(2.0)
   }, 1000)
-
 })
 </script>
 

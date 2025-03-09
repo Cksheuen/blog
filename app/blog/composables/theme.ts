@@ -1,14 +1,17 @@
-import { acceptHMRUpdate, defineStore } from 'pinia'
+import { defineStore } from 'pinia'
+
+type Theme = 'basic' | 'better'
 
 export const useThemeSwitch = defineStore('themeSwitch', () => {
-  const currentTheme = ref('')
+  const currentTheme = ref<Theme>('basic')
 
-  function setNewCur(newTheme: string) {
-    currentTheme.value = newTheme
+  function switchTheme() {
+    currentTheme.value = currentTheme.value === 'basic' ? 'better' : 'basic'
+    console.log('switching theme', currentTheme.value)
   }
 
   return {
-    setNewCur,
     currentTheme,
+    switchTheme,
   }
 })

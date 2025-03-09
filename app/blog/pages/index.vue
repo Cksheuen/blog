@@ -3,10 +3,10 @@ import AuthorInf from '../components/LuofuStyle/AuthorInf.vue'
 import BlogList from '../components/LuofuStyle/BlogList.vue'
 import { list_theme } from '~/composables/listChange'
 
-const sentence = "nvim is such an interesting tool"
+const sentence = 'nvim is such an interesting tool'
 onMounted(() => {
   console.log(sentence)
-  console.log("but it still have some questions to overcome")
+  console.log('but it still have some questions to overcome')
 })
 </script>
 

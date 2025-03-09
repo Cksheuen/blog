@@ -29,7 +29,7 @@ function changeHtml(value: any) {
   <div relative z-1>
     <div class="main" w-200 style="margin: 0 auto;" flex>
       <FileIndex w-100 />
-      <RichEditor @changeHtml="changeHtml" />
+      <RichEditor @change-html="changeHtml" />
     </div>
   </div>
 </template>

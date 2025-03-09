@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeUnmount, onMounted, ref, shallowRef } from 'vue'
+import { onBeforeUnmount, ref, shallowRef } from 'vue'
 import '@wangeditor/editor/dist/css/style.css'
 import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 
@@ -86,7 +86,7 @@ async function update() {
   <div class="all">
     <div class="editor">
       <Toolbar style="border-bottom: 1px solid #ccc" :editor="editorRef" :default-config="toolbarConfig" mode="default" />
-      <Editor v-model="valueHtml" style="height: 25rem;" overflow-x-hidden :default-config="editorConfig" mode="default" @onCreated="handleCreated" />
+      <Editor v-model="valueHtml" style="height: 25rem;" overflow-x-hidden :default-config="editorConfig" mode="default" @on-created="handleCreated" />
     </div>
     <div class="update" mt-5 btn @click="update">
       确认 && 保存

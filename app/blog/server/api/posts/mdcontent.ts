@@ -1,11 +1,9 @@
 import fs from 'node:fs'
 import path, { dirname } from 'node:path'
-import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
-import axios from 'axios'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

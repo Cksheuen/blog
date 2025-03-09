@@ -34,7 +34,7 @@ const list_icons = ['i-carbon-blog', 'i-carbon-notebook-reference', 'i-carbon-de
         relative my-5 w-70 flex cursor-pointer items-center
         justify-left b-1 b-solid px-4 py-1 transition-all duration-300 ease-in-out @click="changeListTheme(list.toLowerCase())"
       >
-        <div v-if="list.toLowerCase() === list_theme" class="bg-font lightSpeedInLeft" absolute bottom-1 right-1 text-5 text-clock-bg-400>
+        <div v-if="list.toLowerCase() === list_theme" class="lightSpeedInLeft bg-font" absolute bottom-1 right-1 text-5 text-clock-bg-400>
           {{ list }}
         </div>
         <span :class="list_icons[i]" mr-3 inline-block h-8 w-8 />

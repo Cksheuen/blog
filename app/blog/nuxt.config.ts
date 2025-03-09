@@ -1,6 +1,4 @@
-import path from 'node:path'
 import * as fs from 'node:fs'
-import axios from 'axios'
 import { defineNuxtConfig } from 'nuxt/config'
 import wasm from 'vite-plugin-wasm'
 import { pwa } from './config/pwa'
@@ -102,5 +100,5 @@ export default defineNuxtConfig({
   // plugins: ['~/plugins/glslAnimation.ts'],
   ssr: false,
 
-  compatibilityDate: '2025-03-09'
+  compatibilityDate: '2025-03-09',
 })
