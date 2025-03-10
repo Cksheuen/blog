@@ -9,5 +9,8 @@
   },
   "keywords": [],
   "author": "Cksheuen",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "wasm_scene": "workspace:*"
+  }
 }

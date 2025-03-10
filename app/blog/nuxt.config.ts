@@ -1,4 +1,5 @@
 import * as fs from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { defineNuxtConfig } from 'nuxt/config'
 import wasm from 'vite-plugin-wasm'
 import { pwa } from './config/pwa'
@@ -94,6 +95,11 @@ export default defineNuxtConfig({
     },
     optimizeDeps: {
       exclude: ['wasm_scene'],
+    },
+    resolve: {
+      alias: {
+        wasm_scene: fileURLToPath(new URL('../../wasm/wasm-scene/pkg/wasm_scene.js', import.meta.url)),
+      },
     },
   },
 

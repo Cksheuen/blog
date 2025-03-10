@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import * as wasm from 'wasm_scene'
+import * as wasm from '../../../../../wasm/wasm-scene/pkg/wasm_scene'
 
 const { day_time, time_fly, flown_time } = storeToRefs(useGlslAnimationStore())
 let bg: wasm.Painter
