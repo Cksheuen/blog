@@ -105,6 +105,8 @@ export default defineNuxtConfig({
 
   // plugins: ['~/plugins/glslAnimation.ts'],
   ssr: false,
-
+  alias: {
+    '@wasm_scene': fileURLToPath(new URL('../../wasm/wasm-scene/pkg', import.meta.url)),
+  },
   compatibilityDate: '2025-03-09',
 })

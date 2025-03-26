@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cd app/blog & pnpm dev",
-    "build": "cd app/blog & pnpm build"
+    "dev": "pnpm -F blog dev",
+    "build": "pnpm -F blog build",
+    "wp": "cd wasm/wasm-scene & wasm-pack build"
   },
   "keywords": [],
   "author": "Cksheuen",

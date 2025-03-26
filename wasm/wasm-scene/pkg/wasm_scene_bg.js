@@ -439,6 +439,10 @@ export function __wbg_enableVertexAttribArray_6d44444aa994f42a(arg0, arg1) {
     getObject(arg0).enableVertexAttribArray(arg1 >>> 0);
 };
 
+export function __wbg_finish_9b0684707597ad56(arg0) {
+    getObject(arg0).finish();
+};
+
 export function __wbg_getAttribLocation_0a3d71a11394d043(arg0, arg1, arg2, arg3) {
     const ret = getObject(arg0).getAttribLocation(getObject(arg1), getStringFromWasm0(arg2, arg3));
     return ret;

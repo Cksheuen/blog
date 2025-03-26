@@ -206,6 +206,13 @@ impl WebGL {
 
     pub fn draw(&mut self) {
         // log_str("draw");
+        let window = web_sys::window().expect("should have a window in this context");
+        let performance = window
+            .performance()
+            .expect("performance should be available");
+
+        let time1 = performance.now();
+
         let time = web_sys::window().unwrap().performance().unwrap().now() - self.start_time;
         let gl = self.context.clone();
         gl.uniform3f(
@@ -224,8 +231,6 @@ impl WebGL {
             self.update_data();
             self.update = false;
         }
-
-        gl.clear(WebGlRenderingContext::COLOR_BUFFER_BIT);
 
         let position_location =
             gl.get_attrib_location(self.program.as_ref().unwrap(), "a_position");
@@ -248,7 +253,17 @@ impl WebGL {
             0,
         );
 
+        let time2 = performance.now();
+
+        gl.clear(WebGlRenderingContext::COLOR_BUFFER_BIT);
         gl.draw_arrays(WebGlRenderingContext::TRIANGLE_FAN, 0, 4);
+
+        gl.finish();
+
+        let time3 = performance.now();
+
+        log_str(&format!("set time: {}", time2 - time1));
+        log_str(&format!("draw time: {}", time3 - time2));
     }
 
     pub fn time_flow(&mut self, sun_sita: f64) {
@@ -258,7 +273,10 @@ impl WebGL {
     }
 
     pub fn update_data(&mut self) {
+        let time1 = web_sys::window().unwrap().performance().unwrap().now();
         let data = utils::init_data(self.tar_point);
+        let time2 = web_sys::window().unwrap().performance().unwrap().now();
+        log_str(&format!("init data time: {}", time2 - time1));
 
         let gl = self.context.clone();
         gl.uniform3fv_with_f32_array(

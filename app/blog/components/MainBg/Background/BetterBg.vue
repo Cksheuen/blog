@@ -1,12 +1,27 @@
 <script lang="ts" setup>
-import * as wasm from '../../../../../wasm/wasm-scene/pkg/wasm_scene'
+import type { Painter } from '@wasm_scene'
+
+const props = defineProps<{ ifShow: boolean }>()
 
 const { day_time, time_fly, flown_time } = storeToRefs(useGlslAnimationStore())
-let bg: wasm.Painter
 
-onMounted(() => {
+let wasm: any
+let bg: Painter
+
+function init() {
   const sita = ((day_time.value + 12) % 24 / 12 - 2) * 3.1415926
   bg = wasm.Painter.new(sita)
+}
+
+requestIdleCallback(() => {
+  import('@wasm_scene').then((module) => {
+    wasm = module
+  })
+})
+
+watch(props, (val) => {
+  if (val.ifShow && !bg)
+    init()
 })
 
 let tick = 0
@@ -27,10 +42,14 @@ watch(time_fly, (val) => {
     bg.update(((day_time.value + 12) % 24 / 12 - 2) * 3.1415926)
   }
 })
+
+onUnmounted(() => {
+  bg.free()
+})
 </script>
 
 <template>
-  <canvas id="canvas" fixed top-0 z--1 h-full w-full />
+  <canvas v-show="props.ifShow" id="canvas" fixed top-0 z--1 h-full w-full />
 </template>
 
 <style scoped>
