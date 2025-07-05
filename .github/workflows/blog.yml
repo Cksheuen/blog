@@ -1,0 +1,51 @@
+name: Deploy Blog to Tencent Cloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build project
+      run: pnpm build
+
+    - name: Prepare SSH key
+      run: |
+        echo "$SERVER_KEY" | base64 -d > id_rsa
+        chmod 600 id_rsa
+      env:
+        SERVER_KEY: ${{ secrets.SERVER_KEY }}
+
+    - name: Remove existing remote files
+      run: |
+        ssh -i id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf ${{ secrets.SERVER_PATH }}/*"
+
+    - name: Copy files to server via SCP
+      run: |
+        scp -i id_rsa -o StrictHostKeyChecking=no -r ${{ secrets.OUTPUT_PATH }} ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}
+
+    - name: Run deploy script via SSH
+      run: |
+        ssh -i id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          cd ${{ secrets.SERVER_PATH }}/.output
+          pm2 delete blog || true
+          pm2 start server/index.mjs --name blog
+        EOF
