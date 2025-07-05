@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Painter } from '@wasm_scene'
+import type { Painter } from 'wasm_scene'
 
 const props = defineProps<{ ifShow: boolean }>()
 
@@ -14,7 +14,7 @@ function init() {
 }
 
 requestIdleCallback(() => {
-  import('@wasm_scene').then((module) => {
+  import('wasm_scene').then((module) => {
     wasm = module
   })
 })

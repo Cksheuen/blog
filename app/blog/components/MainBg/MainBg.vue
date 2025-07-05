@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import wasm from 'vite-plugin-wasm'
+// import wasm from 'vite-plugin-wasm'
 import BasicBg from './Background/BasicBg.vue'
 import BetterBg from './Background/BetterBg.vue'
 
@@ -26,20 +26,20 @@ watch(currentTheme, (newVal) => {
   })
 }) */
 
-onMounted(() => {
-  requestIdleCallback(() => {
-    import('@scene_test').then((module) => {
-      console.log(module)
+// onMounted(() => {
+//   requestIdleCallback(() => {
+//     import('@scene_test').then((module) => {
+//       console.log(module)
 
-      const generator = new module.Scene()
+//       const generator = new module.Scene()
 
-      generator.render()
-    })
-  })
-})
+//       generator.render()
+//     })
+//   })
+// })
 
-onMounted(async () => {
-  /* console.log(navigator.hardwareConcurrency)
+// onMounted(async () => {
+/* console.log(navigator.hardwareConcurrency)
 
   const { Pool } = await import('../../composables/pool/pool')
   const pool = new Pool(navigator.hardwareConcurrency || 4)
@@ -47,7 +47,7 @@ onMounted(async () => {
 
   for (let i = 0; i < 10; i++)
     pool.run(i) */
-  /* import('@scene_init').then((module) => {
+/* import('@scene_init').then((module) => {
     const { Vec2, cal_pos_relative, init_data } = module
 
     const start = performance.now()
@@ -58,7 +58,7 @@ onMounted(async () => {
     }
     console.log('串行计算耗时', performance.now() - start)
   }) */
-})
+// })
 </script>
 
 <template>

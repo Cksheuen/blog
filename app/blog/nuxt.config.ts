@@ -106,10 +106,5 @@ export default defineNuxtConfig({
 
   // plugins: ['~/plugins/glslAnimation.ts'],
   ssr: true,
-  alias: {
-    '@wasm_scene': fileURLToPath(new URL('../../wasm/wasm-scene/pkg', import.meta.url)),
-    '@scene_init': fileURLToPath(new URL('../../wasm/scene-init/pkg', import.meta.url)),
-    '@scene_test': fileURLToPath(new URL('../../../wasm-bindgen-main/wasm-bindgen-main/examples/raytrace-parallel/pkg', import.meta.url)),
-  },
   compatibilityDate: '2025-03-09',
 })
