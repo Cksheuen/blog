@@ -15,7 +15,6 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@oxc-parser/binding-win32-x64-msvc": "^0.75.1",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^1.7.2",
@@ -26,6 +25,10 @@
     "reveal.js": "^5.1.0",
     "three": "^0.162.0",
     "turndown": "^7.2.0"
+  },
+  "optionalDependencies": {
+    "@oxc-parser/binding-linux-x64-gnu": "0.75.1",
+    "@oxc-parser/binding-win32-x64-msvc": "0.75.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^1.2.1",
