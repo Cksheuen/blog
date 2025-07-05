@@ -14,9 +14,6 @@ importers:
 
   app/blog:
     dependencies:
-      '@oxc-parser/binding-win32-x64-msvc':
-        specifier: ^0.75.1
-        version: 0.75.1
       '@wangeditor/editor':
         specifier: ^5.1.23
         version: 5.1.23
@@ -63,6 +60,12 @@ importers:
       '@nuxtjs/color-mode':
         specifier: ^3.4.1
         version: 3.5.2(magicast@0.3.5)
+      '@oxc-parser/binding-linux-x64-gnu':
+        specifier: 0.75.1
+        version: 0.75.1
+      '@oxc-parser/binding-win32-x64-msvc':
+        specifier: 0.75.1
+        version: 0.75.1
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.5(magicast@0.3.5)(typescript@5.8.3)(vue@3.5.17(typescript@5.8.3))
@@ -1117,9 +1120,7 @@ packages:
   '@oxc-parser/binding-linux-x64-gnu@0.75.1':
     resolution: {integrity: sha512-zJ2t+d1rV5dcPJHxN3B1Fxc2KDN+gPgdXtlzp0/EH4iO3s5OePpPvTTZA/d1vfPoQFiFOT7VYNmaD9XjHfMQaw==}
     engines: {node: '>=20.0.0'}
-    cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@oxc-parser/binding-linux-x64-musl@0.75.1':
     resolution: {integrity: sha512-62hG/1IoOr0hpmGtF2k1MJUzAXLH7DH3fSAttZ1vEvDThhLplqA7jcqOP0IFMIVZ0kt9cA/rW5pF4tnXjiWeSA==}
@@ -1142,7 +1143,6 @@ packages:
   '@oxc-parser/binding-win32-x64-msvc@0.75.1':
     resolution: {integrity: sha512-ThiQUpCG2nYE/bnYM3fjIpcKbxITB/a/cf5VL0VAqtpsGNCzUC7TrwMVUdfBerTBTEZpwxWBf/d1EF1ggrtVfQ==}
     engines: {node: '>=20.0.0'}
-    cpu: [x64]
     os: [win32]
 
   '@oxc-project/types@0.75.1':
@@ -8429,8 +8429,7 @@ snapshots:
   '@oxc-parser/binding-linux-s390x-gnu@0.75.1':
     optional: true
 
-  '@oxc-parser/binding-linux-x64-gnu@0.75.1':
-    optional: true
+  '@oxc-parser/binding-linux-x64-gnu@0.75.1': {}
 
   '@oxc-parser/binding-linux-x64-musl@0.75.1':
     optional: true

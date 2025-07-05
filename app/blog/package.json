@@ -26,16 +26,14 @@
     "three": "^0.162.0",
     "turndown": "^7.2.0"
   },
-  "optionalDependencies": {
-    "@oxc-parser/binding-linux-x64-gnu": "0.75.1",
-    "@oxc-parser/binding-win32-x64-msvc": "0.75.1"
-  },
   "devDependencies": {
     "@antfu/eslint-config": "^1.2.1",
     "@iconify-json/carbon": "^1.1.34",
     "@iconify-json/twemoji": "^1.1.15",
     "@nuxt/content": "^2.12.1",
     "@nuxtjs/color-mode": "^3.4.1",
+    "@oxc-parser/binding-linux-x64-gnu": "0.75.1",
+    "@oxc-parser/binding-win32-x64-msvc": "0.75.1",
     "@pinia/nuxt": "^0.5.1",
     "@types/reveal.js": "^5.0.3",
     "@types/three": "^0.162.0",
